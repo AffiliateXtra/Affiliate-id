@@ -329,6 +329,337 @@
         // Render Produk
         function renderProducts(data) {
             productList.innerHTML = data.map(product => `
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Pembelian Produk Shopee Terbaik</title>
+
+    <meta name="description" content="Daftar link pembelian produk Shopee. Cepat, responsif, dan mudah digunakan.">
+
+    <style>
+        /* ========================================================= */
+        /* === CSS GLOBAL & KONTEN === */
+        /* ========================================================= */
+
+        :root {
+            --shopee-red: #ff5722;
+            --shopee-orange: #EE4E2C;
+            --text-dark: #333;
+            --text-gray: #666;
+            --bg-light: #f0f0f0;
+            --content-max-width: 480px;
+            --spacing-default: 1.25rem;
+            --border-radius-card: 1rem;
+            --spacing-card-gap: 0.625rem;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .page-container {
+            width: 100%;
+            max-width: var(--content-max-width);
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #shopee-link-page {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        /* === HEADER === */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background-image: linear-gradient(to right, var(--shopee-red), var(--shopee-orange));
+            color: white;
+            padding: 1rem var(--spacing-default) 0.8rem var(--spacing-default);
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+        }
+
+        .shopee-logo-header {
+            width: 3.5rem;
+            height: 2.1rem;
+            object-fit: contain;
+            content: url('https://ik.imagekit.io/7jrp2esuz/Shopeeaffx.png?updatedAt=1764669131686');
+        }
+
+        .header h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            margin: 0.35rem 0 0.5rem 0;
+            opacity: 0.9;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Efek Header Saat Scroll */
+        .header.scrolled {
+            padding-top: 0.6rem;
+            padding-bottom: 0.6rem;
+        }
+
+        .header.scrolled p {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+            pointer-events: none;
+        }
+
+        /* === SEARCH BAR === */
+        .search-bar-container {
+            position: sticky;
+            z-index: 35;
+            background-color: #F0F0F0;
+            padding: var(--spacing-default);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .search-bar-wrapper {
+            background-color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar-wrapper input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+
+        .search-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.6rem;
+            background: url('https://ik.imagekit.io/7jrp2esuz/20251202_163843.png') no-repeat center/contain;
+        }
+
+        /* === PRODUCT LIST === */
+        .product-list-wrapper {
+            background-color: var(--bg-light);
+            margin-top: -0.5rem;
+            border-top-left-radius: var(--border-radius-card);
+            border-top-right-radius: var(--border-radius-card);
+            padding: 1.1rem var(--spacing-default) 2rem var(--spacing-default);
+            flex-grow: 1;
+        }
+
+        .product-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .product-item {
+            margin-bottom: var(--spacing-card-gap);
+            background-color: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.1s;
+        }
+
+        .product-item:active { transform: scale(0.98); }
+
+        .product-link {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            width: 4rem;
+            height: 4rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border-radius: 0.5rem;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-number-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: var(--shopee-orange);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        .product-info-wrapper { flex-grow: 1; }
+
+        .product-text h3 {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        .product-text p {
+            margin: 0.2rem 0 0 0;
+            font-size: 0.85rem;
+            color: var(--shopee-orange);
+            font-weight: 600;
+        }
+
+        .next-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            content: url('https://ik.imagekit.io/7jrp2esuz/20251202_163804.png');
+            opacity: 0.5;
+        }
+
+        .hidden { display: none; }
+
+        /* === RESPONSIVE (TABLET/PC) === */
+        @media (min-width: 768px) {
+            .page-container { max-width: 900px; margin: 2rem 0; border-radius: 1rem; overflow: hidden; }
+            .product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            @media (min-width: 1100px) { .product-list { grid-template-columns: repeat(3, 1fr); } }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <div id="shopee-link-page">
+            <header class="header" id="header-list">
+                <div class="header-top-row">
+                    <h1>Link Pembelian Shopee</h1>
+                    <span class="shopee-logo-header"></span>
+                </div>
+                <p>Pilih produk sesuai nomor yang ada di video, berikutnya akan di arahakan ke Shopee untuk pembelian produk </p>
+            </header>
+
+            <div class="search-bar-container" id="search-sticky-bar">
+                <div class="search-bar-wrapper">
+                    <span class="search-icon"></span>
+                    <input type="text" id="search-input" placeholder="Cari nomor atau nama produk...">
+                </div>
+            </div>
+
+            <div class="product-list-wrapper">
+                <ul class="product-list" id="product-list">
+                    </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Gambar
+        const imageUrls = [
+            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3).jpg?updatedAt=1764664709275", "https://ik.imagekit.io/7jrp2esuz/wp-17634607811657997908074833720343.jpg?updatedAt=1764664711233", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1).jpg?updatedAt=1764664713838", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2).jpg?updatedAt=1764664711147", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3)%20(1).jpg?updatedAt=1764664709228", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(4).jpg?updatedAt=1764664711216", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(5).jpg?updatedAt=1764664709038", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(6).jpg?updatedAt=1764664713707", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(7).jpg?updatedAt=1764664709213", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(8).jpg?updatedAt=1764664711243", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(9).jpg?updatedAt=1764664708998", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(10).jpg?updatedAt=1764664709238", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(11).jpg?updatedAt=1764664709060", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(12).jpg?updatedAt=1764664708992", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(13).jpg?updatedAt=1764664708922", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(14).jpg?updatedAt=1764664709087", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(15).jpg?updatedAt=1764664709233", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(16).jpg?updatedAt=1764664709350", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(17).jpg?updatedAt=1764664709216", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(19).jpg?updatedAt=1764664708919", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(20).jpg?updatedAt=1764664708818", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(21).jpg?updatedAt=1764664711084", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(22).jpg?updatedAt=1764664708879", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(23).jpg?updatedAt=1764664711172", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(24).jpg?updatedAt=1764664709054", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(25).jpg?updatedAt=1764664711241", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(26).jpg?updatedAt=1764664709291", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(27).jpg?updatedAt=1764664711214", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(28).jpg?updatedAt=1764664711155", "https://ik.imagekit.io/7jrp2esuz/IMG_20251202_153547_069goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664709340", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(29).jpg?updatedAt=1764664708838", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(30).jpg?updatedAt=1764664711215", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(31).jpg?updatedAt=1764664708858", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664708973", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(2).jpg?updatedAt=1764664709203", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(3).jpg?updatedAt=1764664709323", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(4).jpg?updatedAt=1764664708845", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(5).jpg?updatedAt=1764664709243", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(6).jpg?updatedAt=1764664711167", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(7).jpg?updatedAt=1764664708745", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(8).jpg?updatedAt=1764664711236", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(9).jpg?updatedAt=1764664709193", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(10).jpg?updatedAt=1764664708773", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(11).jpg?updatedAt=1764664711146", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(12).jpg?updatedAt=1764664711264", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(13).jpg?updatedAt=1764664713857", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(14).jpg?updatedAt=1764664709532", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(15).jpg?updatedAt=1764664709131", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(16).jpg?updatedAt=1764664709355", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(17).jpg?updatedAt=1764664709033", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(18).jpg?updatedAt=1764664711075", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2)%20(1).jpg?updatedAt=1764664709012"
+        ];
+
+        const productsData = [
+            { num: 1, name: "Pengasah pisau gunting", sub: "Beli di shopee", img: imageUrls[0], link: "https://s.shopee.co.id/4qBhOY7UYf" },
+            { num: 2, name: "Keset menyerap air", sub: "Beli di shopee", img: imageUrls[1], link: "https://s.shopee.co.id/6VG7kqPRxE" },
+            { num: 3, name: "Pengering Sepatu Elektrik", sub: "Beli di shopee", img: imageUrls[2], link: "https://s.shopee.co.id/10vBA5OZZ6" },
+            { num: 4, name: "Toples Tusuk Gigi Pintar", sub: "Beli di shopee", img: imageUrls[3], link: "https://s.shopee.co.id/1gAryAZcIi" },
+            { num: 5, name: "Wadah sabun Dispenser", sub: "Beli di shopee", img: imageUrls[4], link: "https://s.shopee.co.id/8fKcJrN5Es" },
+            { num: 6, name: "Kura-kura sekarat", sub: "Beli di shopee", img: imageUrls[5], link: "https://s.shopee.co.id/8Khlukjk6S" },
+            { num: 7, name: "Chop bawang cabe dll", sub: "Beli di shopee", img: imageUrls[6], link: "https://s.shopee.co.id/gIKmZ2uTi" },
+            { num: 8, name: "Sikat Pembersih, Elektrik", sub: "Beli di shopee", img: imageUrls[7], link: "https://s.shopee.co.id/AKWdwqZBLg" },
+            { num: 9, name: "Bintang Marah Tantrum", sub: "Beli di shopee", img: imageUrls[8], link: "https://s.shopee.co.id/3qJAD4yMfA" },
+            { num: 10, name: "Blender juice portable", sub: "Beli di shopee", img: imageUrls[9], link: "https://s.shopee.co.id/9AKgZ2mjtx" },
+            { num: 11, name: "Mainan palu anak-anak", sub: "Beli di shopee", img: imageUrls[10], link: "https://s.shopee.co.id/VyuZU9b5m" },
+            { num: 12, name: "Rak Kaki Galon Air", sub: "Beli di shopee", img: imageUrls[11], link: "https://s.shopee.co.id/30gFXyp1tj" },
+            { num: 13, name: "Mainan Kaktus Bergoyang", sub: "Beli di shopee", img: imageUrls[12], link: "https://s.shopee.co.id/7fS56O6mSC" },
+            { num: 14, name: "Mainan Kepiting Lari sensor", sub: "Beli di shopee", img: imageUrls[13], link: "https://s.shopee.co.id/8AS9NLzppT" },
+            { num: 15, name: "Alat gosok kaki saat mandi", sub: "Beli di shopee", img: imageUrls[14], link: "https://s.shopee.co.id/10vBgsHE45" },
+            { num: 16, name: "Spatula Scoop penjepit", sub: "Beli di shopee", img: imageUrls[15], link: "https://s.shopee.co.id/AA9QboF5vP" },
+            { num: 17, name: "Cetakan Es Batu", sub: "Beli di shopee", img: imageUrls[16], link: "https://s.shopee.co.id/8V4zm4rTaF" },
+            { num: 18, name: "Cermin Belakang 4 SISI", sub: "Beli di shopee", img: imageUrls[17], link: "https://s.shopee.co.id/3VcWfecKES" },
+            { num: 19, name: "Kunci Ring Pas Heksagonal", sub: "Beli di shopee", img: imageUrls[18], link: "https://s.shopee.co.id/5VNb3QWTuE" },
+            { num: 20, name: "Botol susu tanpa di pegang", sub: "Beli di shopee", img: imageUrls[19], link: "https://s.shopee.co.id/4foUL32NVk" },
+            { num: 21, name: "Dispenser Air Minum portable", sub: "Beli di shopee", img: imageUrls[20], link: "https://s.shopee.co.id/6AdHqjoTKx" },
+            { num: 22, name: "Kursi Lesehan Lipat", sub: "Beli di shopee", img: imageUrls[21], link: "https://s.shopee.co.id/4AsDn49PMy" },
+            { num: 23, name: "Mini Layar Selfie", sub: "Beli di shopee", img: imageUrls[22], link: "https://s.shopee.co.id/1gAsVKAJk5" },
+            { num: 24, name: "Pemotong buat dan sayur", sub: "Beli di shopee", img: imageUrls[23], link: "https://s.shopee.co.id/60NenlXaPR" },
+            { num: 25, name: "Tang Multifungsi 5 in 1", sub: "Beli di shopee", img: imageUrls[24], link: "https://s.shopee.co.id/8fOPytDedl" },
+            { num: 26, name: "Sikat otomatis Multi fungsi", sub: "Beli di shopee", img: imageUrls[25], link: "https://s.shopee.co.id/6pwlnnJxCN" },
+            { num: 27, name: "Mainan Anak Bebek DJ", sub: "Beli di shopee", img: imageUrls[26], link: "https://s.shopee.co.id/12dzlq4Z6" },
+            { num: 28, name: "Lampu Tidur Bulan Madu", sub: "Beli di shopee", img: imageUrls[27], link: "https://s.shopee.co.id/2B796fXJbz" },
+            { num: 29, name: "Lampu Dinding Elang Botak", sub: "Beli di shopee", img: imageUrls[28], link: "https://s.shopee.co.id/9fDA2W6vdc" },
+            { num: 30, name: "Alat Cukur Portable", sub: "Beli di shopee", img: imageUrls[29], link: "https://s.shopee.co.id/20nj6DE1aV" },
+            { num: 31, name: "Sendok botol makan bayi", sub: "Beli di shopee", img: imageUrls[30], link: "https://s.shopee.co.id/9zq0cy8TrK" },
+            { num: 32, name: "Gembok stang motor", sub: "Beli di shopee", img: imageUrls[31], link: "https://s.shopee.co.id/2B79IlP4Dg" },
+            { num: 33, name: "Blender Serbaguna biji kopi dll", sub: "Beli di shopee", img: imageUrls[32], link: "https://s.shopee.co.id/4VV3NsfPfy" },
+            { num: 34, name: "Kacamata Hitam hybrid", sub: "Beli di shopee", img: imageUrls[33], link: "https://s.shopee.co.id/20nj6ZE4gJ" },
+            { num: 35, name: "GPS Pintar Alat Pelacak", sub: "Beli di shopee", img: imageUrls[34], link: "https://s.shopee.co.id/VyucG5QUy" },
+            { num: 36, name: "Kipas lampu bisa di Custom", sub: "Beli di shopee", img: imageUrls[35], link: "https://s.shopee.co.id/5q0QxvFIIa" },
+            { num: 37, name: "Alat pencambut rumput", sub: "Beli di shopee", img: imageUrls[36], link: "https://s.shopee.co.id/10vBuoO2gn" },
+            { num: 38, name: "LED fleksibel pakai aplikasi", sub: "Beli di shopee", img: imageUrls[37], link: "https://s.shopee.co.id/2LQZVJiI4G" },
+            { num: 39, name: "Mesin cuci portable", sub: "Beli di shopee", img: imageUrls[38], link: "https://s.shopee.co.id/LfV7fK5n0" },
+            { num: 40, name: "Headrest Penyangga Kepala", sub: "Beli di shopee", img: imageUrls[39], link: "https://s.shopee.co.id/30k3Ew7Uk9" },
+            { num: 41, name: "Alat Peras Buah", sub: "Beli di shopee", img: imageUrls[40], link: "https://s.shopee.co.id/9pWaRGtlUU" },
+            { num: 42, name: "Mainan pancing 3 IN 1", sub: "Beli di shopee", img: imageUrls[41], link: "https://s.shopee.co.id/8zxSipiLOD" },
+            { num: 43, name: "Gunting Kuku elektrik", sub: "Beli di shopee", img: imageUrls[42], link: "https://s.shopee.co.id/4VV3KBxKPA" },
+            { num: 44, name: "Gelas aduk otomatis", sub: "Beli di shopee", img: imageUrls[43], link: "https://s.shopee.co.id/70CP4yQGs6" },
+            { num: 45, name: "Kaset serap air anti selip", sub: "Beli di shopee", img: imageUrls[44], link: "https://s.shopee.co.id/7KpEkV55gW" },
+            { num: 46, name: "Pengiris sayur 5 in 1", sub: "Beli di shopee", img: imageUrls[45], link: "https://s.shopee.co.id/4fsHEA8jEI" },
+            { num: 47, name: "Botol Minyak Goreng spray", sub: "Beli di shopee", img: imageUrls[46], link: "https://s.shopee.co.id/3LJ6iNEODr" },
+            { num: 48, name: "4Pcs alat sprei anti kusut", sub: "Beli di shopee", img: imageUrls[47], link: "https://s.shopee.co.id/2qMq7X9jh0" },
+            { num: 49, name: "Bantal Sabuk Kursi tipe 1", sub: "Beli di shopee", img: imageUrls[48], link: "https://s.shopee.co.id/5Akktv2YQc" },
+            { num: 50, name: "Bantal Sabuk Kursi tipe 2", sub: "Beli di shopee", img: imageUrls[49], link: "https://s.shopee.co.id/9fDAHt0gbK" },
+            { num: 51, name: "Kompor Gas Portable", sub: "Beli di shopee", img: imageUrls[50], link: "https://s.shopee.co.id/7V8fl8gshm" },
+            { num: 52, name: "Selfi screen monitor", sub: "Beli di shopee", img: imageUrls[51], link: "https://s.shopee.co.id/4q7wfvXWnw" }
+        ];
+
+        // Elemen DOM
+        const productList = document.getElementById('product-list');
+        const searchInput = document.getElementById('search-input');
+        const headerList = document.getElementById('header-list');
+        const searchStickyBar = document.getElementById('search-sticky-bar');
+
+        // Render Produk
+        function renderProducts(data) {
+            productList.innerHTML = data.map(product => `
                 <li class="product-item" data-name="${product.name.toLowerCase()}" data-num="${product.num}">
                     <a href="${product.link}" target="_blank" rel="noopener" class="product-link">
                         <div class="product-image-wrapper">
@@ -354,6 +685,34 @@
 
             for (let item of items) {
                 const name = item.getAttribute('data-name');
+                const num = item.getAttribute('data-num');
+                const isMatch = query === '' || ( !isNaN(query) ? num === query : name.includes(query) );
+                item.classList.toggle('hidden', !isMatch);
+            }
+        }
+
+        // Sticky Logic
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY > 10;
+            headerList.classList.toggle('scrolled', scrolled);
+            searchStickyBar.style.top = `${headerList.offsetHeight}px`;
+        });
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(productsData);
+            searchStickyBar.style.top = `${headerList.offsetHeight}px`;
+        });
+
+        searchInput.addEventListener('input', filterProducts);
+        window.addEventListener('resize', () => {
+            searchStickyBar.style.top = `${headerList.offsetHeight}px`;
+        });
+    </script>
+</body>
+</html>
+
+me');
                 const num = item.getAttribute('data-num');
                 const isMatch = query === '' || ( !isNaN(query) ? num === query : name.includes(query) );
                 item.classList.toggle('hidden', !isMatch);
