@@ -5,41 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Link Pembelian Produk Shopee Terbaik</title>
 
-    <meta name="description" content="Halaman landing dan link pembelian produk via Shopee. Cepat, responsif, dan mudah digunakan.">
-    <link rel="preload" href="https://ik.imagekit.io/2fgtwvaxrw/20251120_133428.jpg?updatedAt=1763620594020" as="image">
+    <meta name="description" content="Daftar link pembelian produk Shopee. Cepat, responsif, dan mudah digunakan.">
 
     <style>
         /* ========================================================= */
-        /* === CSS GLOBAL & KONTEN MOBILE (MAX-WIDTH) === */
+        /* === CSS GLOBAL & KONTEN === */
         /* ========================================================= */
 
         :root {
-            /* Definisi Warna */
             --shopee-red: #ff5722;
             --shopee-orange: #EE4E2C;
             --text-dark: #333;
             --text-gray: #666;
             --bg-light: #f0f0f0;
-            --bg-bottom-color: #7E1800; /* WARNA LATAR BELAKANG BAWAH */
             --content-max-width: 480px;
-            /* === VARIABEL UNTUK SPACING DAN RADIUS === */
-            --spacing-default: 1.25rem; /* 20px */
-            --spacing-large: 2.5rem;
-            --spacing-small: 0.625rem; /* 10px */
+            --spacing-default: 1.25rem;
             --border-radius-card: 1rem;
-            --spacing-card-gap: 0.625rem; /* 10px */
+            --spacing-card-gap: 0.625rem;
         }
 
-        /* Reset dan Dasar */
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-light);
             display: flex;
             justify-content: center;
             min-height: 100vh;
-            font-size: 16px;
         }
 
         .page-container {
@@ -52,124 +44,22 @@
             flex-direction: column;
         }
 
-        /* Menyembunyikan halaman kedua secara default */
         #shopee-link-page {
-            display: none;
+            display: flex;
+            flex-direction: column;
             flex-grow: 1;
         }
 
-        /* ========================================================= */
-        /* === CSS Halaman Utama (LANDING PAGE) MODIFIKASI | PERBAIKAN GESER KOTAK PUTIH HP === */
-        /* ========================================================= */
-
-        #landing-page {
-            min-height: 100vh; 
-            background-color: var(--bg-bottom-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .top-image-container {
-            background-color: #7E1800;
-            overflow: hidden;
-            line-height: 0;
-            flex-shrink: 0;
-            /* TAMBAHAN: Ruang di bawah gambar */
-            padding-bottom: 0.5rem; 
-        }
-
-        .main-promo-image {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .content-box {
-            background-color: white;
-            padding: 1rem 1rem;
-            text-align: center;
-            border-top-left-radius: var(--spacing-default);
-            border-top-right-radius: var(--spacing-default);
-            border-bottom-left-radius: var(--spacing-default);
-            border-bottom-right-radius: var(--spacing-default);
-
-            /* PERBAIKAN: Mengurangi margin negatif agar kotak bergeser ke bawah */
-            margin-top: -0.5rem; 
-            position: relative;
-            z-index: 10;
-
-            /* PERBAIKAN: Menambah margin bawah sedikit */
-            margin-bottom: 1.5rem; 
-            margin-left: 1rem;
-            margin-right: 1rem;
-
-            flex-grow: 0; 
-            flex-shrink: 0;
-            
-            display: block; 
-        }
-
-        .main-heading {
-            font-size: 1.5rem;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--text-dark);
-            margin-bottom: 0.9375rem;
-        }
-
-        .sub-text-landing {
-            font-size: .9rem;
-            color: var(--text-gray);
-            line-height: 1.5;
-            margin-bottom: 2.1875rem;
-        }
-
-        .shopee-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0.9375rem 0;
-            background-color: var(--shopee-red);
-            color: white;
-            text-decoration: none;
-            border-radius: 0.8rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            box-shadow: 0 4px 8px rgba(255, 77, 77, 0.4);
-            transition: background-color 0.2s;
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-
-        .shopee-button:active {
-            transform: scale(0.99);
-        }
-
-        .shopee-icon {
-            width: 1.75rem;
-            height: 1.75rem;
-            margin-right: 0.5rem;
-            object-fit: contain;
-            content: url('https://ik.imagekit.io/7jrp2esuz/Shopeeaffx.png?updatedAt=1764669131686');
-        }
-
-        /* ========================================================= */
-        /* === CSS Halaman Link Pembelian (PRODUCT LIST PAGE) === */
-        /* ========================================================= */
-
-        /* Header (Sticky dan Animasi Menyusut) */
+        /* === HEADER === */
         .header {
             position: sticky;
             top: 0;
             z-index: 40;
             background-image: linear-gradient(to right, var(--shopee-red), var(--shopee-orange));
             color: white;
-            padding: 0.75rem var(--spacing-default) 0.5rem var(--spacing-default);
-            transition: all 1.3s ease-in-out;
+            padding: 1rem var(--spacing-default) 0.8rem var(--spacing-default);
+            transition: all 0.3s ease-in-out;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
         }
 
         .header-top-row {
@@ -180,161 +70,106 @@
         }
 
         .shopee-logo-header {
-            width: 2.70rem;
+            width: 3.5rem;
             height: 2.1rem;
-            margin-top: -0.90rem;
             object-fit: contain;
             content: url('https://ik.imagekit.io/7jrp2esuz/Shopeeaffx.png?updatedAt=1764669131686');
-        }
-
-        .header-text-area {
-            padding-left: 0;
-            margin-top: -0.5rem;
-            transition: all 0.3s ease-in-out;
         }
 
         .header h1 {
             font-size: 1.4rem;
             margin: 0;
-            font-weight: 600;
-            text-align: left;
-        }
-
-        .back-button {
-            padding: 0.3125rem;
-            cursor: pointer;
-        }
-
-        .back-icon {
-            width: 1.90rem;
-            height: 1.90rem;
-            margin-right: 0px;
-            content: url('https://ik.imagekit.io/2fgtwvaxrw/20251124_171055.png');
-        }
-
-        .header.scrolled {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .header p {
-            font-size: 1.0rem;
-            margin: 0.35rem 0 0.6rem 0;
-            font-weight: 400;
-            opacity: 0.87;
-            transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out, margin 0.3s ease-in-out;
-            overflow: hidden;
+            font-size: 0.95rem;
+            margin: 0.35rem 0 0.5rem 0;
+            opacity: 0.9;
+            transition: all 0.3s ease-in-out;
         }
 
-        .header.scrolled .header-text-area {
+        /* Efek Header Saat Scroll */
+        .header.scrolled {
+            padding-top: 0.6rem;
+            padding-bottom: 0.6rem;
+        }
+
+        .header.scrolled p {
             opacity: 0;
             height: 0;
-            margin-top: 0.10rem;
-            margin-bottom: -1rem;
+            margin: 0;
+            pointer-events: none;
         }
 
-        .header.scrolled .header-top-row {
-            padding-bottom: 0;
-        }
-
-        /* === SEARCH BAR - STICKY KEDUA (WADAH ABU-ABU) === */
+        /* === SEARCH BAR === */
         .search-bar-container {
             position: sticky;
             z-index: 35;
             background-color: #F0F0F0;
-            box-shadow: none;
             padding: var(--spacing-default);
-            margin: 0;
             width: 100%;
             box-sizing: border-box;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
         }
 
         .search-bar-wrapper {
             background-color: white;
-            padding: 0.5rem 1.0rem;
+            padding: 0.6rem 1rem;
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .search-bar-wrapper input {
-            flex-grow: 100;
+            flex-grow: 1;
             border: none;
             outline: none;
-            padding: 0.3125rem;
             font-size: 1rem;
             color: var(--text-dark);
-            background: transparent;
         }
 
         .search-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-            margin-right: 0.625rem;
-            background-image: url('https://ik.imagekit.io/7jrp2esuz/20251202_163843.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            display: inline-block;
-            flex-shrink: 0;
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.6rem;
+            background: url('https://ik.imagekit.io/7jrp2esuz/20251202_163843.png') no-repeat center/contain;
         }
 
-        /* === WRAPPER KARTU PRODUK PUTIH (OVERLAP & RADIUS) === */
+        /* === PRODUCT LIST === */
         .product-list-wrapper {
             background-color: var(--bg-light);
-            margin-top: calc(-0.8 * var(--border-radius-card) - 0.25rem);
+            margin-top: -0.5rem;
             border-top-left-radius: var(--border-radius-card);
             border-top-right-radius: var(--border-radius-card);
-            position: relative;
-            z-index: 20;
-
-            padding-top: 1.1rem;
-            padding-left: var(--spacing-default);
-            padding-right: var(--spacing-default);
-            padding-bottom: 1.3rem;
-
-            overflow: visible;
+            padding: 1.1rem var(--spacing-default) 2rem var(--spacing-default);
             flex-grow: 1;
         }
 
-        /* Daftar Produk */
         .product-list {
             padding: 0;
             margin: 0;
             list-style: none;
-            background-color: transparent;
         }
 
-        /* Jarak antar kartu lebih rapat (margin-bottom) */
         .product-item {
             margin-bottom: var(--spacing-card-gap);
             background-color: white;
             border-radius: 0.75rem;
+            overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: transform 0.1s;
         }
 
-        .product-item:last-child {
-            margin-bottom: 0;
-        }
+        .product-item:active { transform: scale(0.98); }
 
         .product-link {
             display: flex;
             align-items: center;
-            padding: 0.5rem 0.9rem 0.5rem 0.5rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            padding: 0.6rem;
             text-decoration: none;
             color: inherit;
-            width: 100%;
-            box-sizing: border-box;
-            border-radius: 0.75rem;
         }
-
-        .product-link:hover { background-color: #f9f9f9; }
-        .product-link:active { background-color: #f0f0f0; }
 
         .product-image-wrapper {
             position: relative;
@@ -342,7 +177,7 @@
             height: 4rem;
             margin-right: 1rem;
             flex-shrink: 0;
-            border-radius: 0.3125rem;
+            border-radius: 0.5rem;
             border: 1px solid #eee;
             overflow: hidden;
         }
@@ -351,222 +186,69 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         .product-number-overlay {
             position: absolute;
             top: 0;
             left: 0;
-            background-color: rgba(238, 78, 44, 0.9);
+            background-color: var(--shopee-orange);
             color: white;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 0.1rem 0.35rem;
-            border-bottom-right-radius: 0.3125rem;
-            line-height: 1;
-            z-index: 10;
-            min-width: 0.75rem;
-            text-align: center;
+            padding: 2px 6px;
+            border-bottom-right-radius: 0.5rem;
         }
 
-        .product-info-wrapper {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .product-icon-text-wrapper {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
-
-        .product-text {
-             margin: 0;
-             padding: 0;
-             flex-grow: 1;
-        }
+        .product-info-wrapper { flex-grow: 1; }
 
         .product-text h3 {
             margin: 0;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-dark);
             font-weight: 700;
         }
 
         .product-text p {
-            margin: 0.225rem 0 0 0;
-            font-size: 0.9rem;
+            margin: 0.2rem 0 0 0;
+            font-size: 0.85rem;
             color: var(--shopee-orange);
+            font-weight: 600;
         }
 
         .next-icon {
-            width: 2rem;
-            height: 2rem;
-            margin-left: 0.5rem;
-            flex-shrink: 0;
-            content: url('https://ik.imagekit.io/7jrp2esuz/20251202_163804.png?updatedAt=1764668702498');
-            object-fit: contain;
+            width: 1.5rem;
+            height: 1.5rem;
+            content: url('https://ik.imagekit.io/7jrp2esuz/20251202_163804.png');
+            opacity: 0.5;
         }
 
-        .product-item.hidden { display: none; }
+        .hidden { display: none; }
 
-        /* ========================================================= */
-        /* === MEDIA QUERY UNTUK LAYAR TABLET & PC (RESPONSIVITAS) === */
-        /* ========================================================= */
-
+        /* === RESPONSIVE (TABLET/PC) === */
         @media (min-width: 768px) {
-
-            body {
-                background-color: #f7f7f7;
-            }
-
-            .page-container {
-                /* Max-width diperluas hingga 1000px untuk tampilan desktop yang lebih luas */
-                max-width: 1000px;
-                border-radius: 1.5rem;
-                margin-top: 2rem;
-                margin-bottom: 2rem;
-                min-height: auto;
-            }
-
-            /* --- LANDING PAGE --- */
-            #landing-page {
-                /* Di PC, tinggi mengikuti konten, dan pusatkan di page-container */
-                min-height: auto;
-                padding-bottom: 2rem;
-                justify-content: center;
-            }
-
-            .content-box {
-                margin-left: var(--spacing-default);
-                margin-right: var(--spacing-default);
-                padding: 1.5rem 1.5rem;
-                /* Di PC, tumpang tindihnya tidak terlalu penting, tapi margin bawah di PC harus ada */
-                margin-bottom: 0; 
-            }
-
-            .main-heading {
-                font-size: 1.8rem;
-            }
-
-            .sub-text-landing {
-                font-size: 1.1rem;
-            }
-
-            /* --- PRODUCT LIST PAGE --- */
-
-            .header {
-                padding: 1rem var(--spacing-default) 0.8rem var(--spacing-default);
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .header p {
-                font-size: 1.1rem;
-                margin-bottom: 1rem;
-            }
-
-            /* Wrapper List */
-            .product-list-wrapper {
-                padding-top: 2rem;
-                padding-left: var(--spacing-default);
-                padding-right: var(--spacing-default);
-            }
-
-            /* Produk menggunakan GRID */
-            .product-list {
-                display: grid;
-                /* Default 2 kolom untuk tablet */
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--spacing-card-gap);
-            }
-
-            .product-item {
-                margin-bottom: 0;
-                width: auto;
-            }
-
-            .product-link {
-                padding: 0.75rem 1.2rem 0.75rem 0.75rem;
-                /* Gunakan align-items: flex-start agar konten tetap rapi di grid */
-                align-items: flex-start; 
-            }
-
-            .product-image-wrapper {
-                width: 5rem;
-                height: 5rem;
-            }
-
-            .product-text h3 {
-                font-size: 1rem;
-            }
-
-            .product-text p {
-                font-size: 1rem;
-            }
-            
-            /* MEDIA QUERY TAMBAHAN untuk LAYAR SANGAT LEBAR/PC */
-            @media (min-width: 1000px) {
-                .product-list {
-                    /* Mengubah menjadi 3 kolom untuk layar desktop */
-                    grid-template-columns: repeat(3, 1fr); 
-                }
-            }
-
+            .page-container { max-width: 900px; margin: 2rem 0; border-radius: 1rem; overflow: hidden; }
+            .product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            @media (min-width: 1100px) { .product-list { grid-template-columns: repeat(3, 1fr); } }
         }
     </style>
 </head>
 <body>
+
     <div class="page-container">
-
-        <div id="landing-page">
-            <header class="top-image-container">
-                <img
-                    src="https://ik.imagekit.io/7jrp2esuz/20251120_133428%20(1).jpg?updatedAt=1764668704135"
-                    alt="Iklan produk digital dan e-commerce"
-                    class="main-promo-image"
-                >
-            </header>
-
-            <main class="content-box">
-                <h1 class="main-heading">
-                    Semua Pembelian di toko kami Dilakukan Melalui Aplikasi Shopee
-                </h1>
-                <p class="sub-text-landing">
-                    Silakan klik tombol di bawah, lalu pilih produk sesuai nomor yang muncul di video
-                </p>
-                <div class="shopee-button" id="btn-to-product-list">
-                    <span class="shopee-icon"></span>
-                    Beli via shopee
-                </div>
-            </main>
-        </div>
-
         <div id="shopee-link-page">
-
             <header class="header" id="header-list">
                 <div class="header-top-row">
-                    <div class="back-button" id="btn-back-to-landing">
-                        <span class="back-icon"></span>
-                    </div>
+                    <h1>Link Pembelian Shopee</h1>
                     <span class="shopee-logo-header"></span>
                 </div>
-
-                <div class="header-text-area">
-                    <h1>Link Pembelian Shopee</h1>
-                    <p>Pilih produk sesuai nomor di video, nanti kamu akan langsung diarahkan ke aplikasi Shopee untuk pembelian</p>
-                </div>
+                <p>Pilih produk sesuai nomor di video untuk lanjut ke Shopee</p>
             </header>
 
             <div class="search-bar-container" id="search-sticky-bar">
                 <div class="search-bar-wrapper">
                     <span class="search-icon"></span>
-                    <input type="text" id="search-input" placeholder="Cari nomor atau nama produk">
+                    <input type="text" id="search-input" placeholder="Cari nomor atau nama produk...">
                 </div>
             </div>
 
@@ -575,94 +257,41 @@
                     </ul>
             </div>
         </div>
-
     </div>
 
     <script>
-        // Data URL Gambar (SUDAH DIKOREKSI)
+        // Data Gambar
         const imageUrls = [
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3).jpg?updatedAt=1764664709275", // 1
-            "https://ik.imagekit.io/7jrp2esuz/wp-17634607811657997908074833720343.jpg?updatedAt=1764664711233", // 2
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1).jpg?updatedAt=1764664713838", // 3
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2).jpg?updatedAt=1764664711147", // 4
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3)%20(1).jpg?updatedAt=1764664709228", // 5
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(4).jpg?updatedAt=1764664711216", // 6
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(5).jpg?updatedAt=1764664709038", // 7
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(6).jpg?updatedAt=1764664713707", // 8
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(7).jpg?updatedAt=1764664709213", // 9
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(8).jpg?updatedAt=1764664711243", // 10
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(9).jpg?updatedAt=1764664708998", // 11
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(10).jpg?updatedAt=1764664709238", // 12
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(11).jpg?updatedAt=1764664709060", // 13
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(12).jpg?updatedAt=1764664708992", // 14
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(13).jpg?updatedAt=1764664708922", // 15
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(14).jpg?updatedAt=1764664709087", // 16
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(15).jpg?updatedAt=1764664709233", // 17
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(16).jpg?updatedAt=1764664709350", // 18
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(17).jpg?updatedAt=1764664709216", // 19
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(19).jpg?updatedAt=1764664708919", // 20
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(20).jpg?updatedAt=1764664708818", // 21
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(21).jpg?updatedAt=1764664711084", // 22
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(22).jpg?updatedAt=1764664708879", // 23
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(23).jpg?updatedAt=1764664711172", // 24
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(24).jpg?updatedAt=1764664709054", // 25
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(25).jpg?updatedAt=1764664711241", // 26
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(26).jpg?updatedAt=1764664709291", // 27
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(27).jpg?updatedAt=1764664711214", // 28
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(28).jpg?updatedAt=1764664711155", // 29
-            "https://ik.imagekit.io/7jrp2esuz/IMG_20251202_153547_069goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664709340", // 30
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(29).jpg?updatedAt=1764664708838", // 31
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(30).jpg?updatedAt=1764664711215", // 32
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(31).jpg?updatedAt=1764664708858", // 33
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664708973", // 34
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(2).jpg?updatedAt=1764664709203", // 35
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(3).jpg?updatedAt=1764664709323", // 36
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(4).jpg?updatedAt=1764664708845", // 37
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(5).jpg?updatedAt=1764664709243", // 38
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(6).jpg?updatedAt=1764664711167", // 39
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(7).jpg?updatedAt=1764664708745", // 40
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(8).jpg?updatedAt=1764664711236", // 41
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(9).jpg?updatedAt=1764664709193", // 42
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(10).jpg?updatedAt=1764664708773", // 43
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(11).jpg?updatedAt=1764664711146", // 44
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(12).jpg?updatedAt=1764664711264", // 45
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(13).jpg?updatedAt=1764664713857", // 46
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(14).jpg?updatedAt=1764664709532", // 47
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(15).jpg?updatedAt=1764664709131", // 48
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(16).jpg?updatedAt=1764664709355", // 49
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(17).jpg?updatedAt=1764664709033", // 50
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(18).jpg?updatedAt=1764664711075", // 51
-            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2)%20(1).jpg?updatedAt=1764664709012"  // 52
+            "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3).jpg?updatedAt=1764664709275", "https://ik.imagekit.io/7jrp2esuz/wp-17634607811657997908074833720343.jpg?updatedAt=1764664711233", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1).jpg?updatedAt=1764664713838", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2).jpg?updatedAt=1764664711147", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(3)%20(1).jpg?updatedAt=1764664709228", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(4).jpg?updatedAt=1764664711216", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(5).jpg?updatedAt=1764664709038", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(6).jpg?updatedAt=1764664713707", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(7).jpg?updatedAt=1764664709213", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(8).jpg?updatedAt=1764664711243", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(9).jpg?updatedAt=1764664708998", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(10).jpg?updatedAt=1764664709238", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(11).jpg?updatedAt=1764664709060", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(12).jpg?updatedAt=1764664708992", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(13).jpg?updatedAt=1764664708922", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(14).jpg?updatedAt=1764664709087", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(15).jpg?updatedAt=1764664709233", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(16).jpg?updatedAt=1764664709350", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(17).jpg?updatedAt=1764664709216", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(19).jpg?updatedAt=1764664708919", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(20).jpg?updatedAt=1764664708818", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(21).jpg?updatedAt=1764664711084", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(22).jpg?updatedAt=1764664708879", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(23).jpg?updatedAt=1764664711172", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(24).jpg?updatedAt=1764664709054", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(25).jpg?updatedAt=1764664711241", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(26).jpg?updatedAt=1764664709291", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(27).jpg?updatedAt=1764664711214", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(28).jpg?updatedAt=1764664711155", "https://ik.imagekit.io/7jrp2esuz/IMG_20251202_153547_069goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664709340", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(29).jpg?updatedAt=1764664708838", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(30).jpg?updatedAt=1764664711215", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(31).jpg?updatedAt=1764664708858", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(1)%20(1).jpg?updatedAt=1764664708973", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(2).jpg?updatedAt=1764664709203", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(3).jpg?updatedAt=1764664709323", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(4).jpg?updatedAt=1764664708845", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(5).jpg?updatedAt=1764664709243", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(6).jpg?updatedAt=1764664711167", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(7).jpg?updatedAt=1764664708745", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(8).jpg?updatedAt=1764664711236", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(9).jpg?updatedAt=1764664709193", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(10).jpg?updatedAt=1764664708773", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(11).jpg?updatedAt=1764664711146", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(12).jpg?updatedAt=1764664711264", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(13).jpg?updatedAt=1764664713857", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(14).jpg?updatedAt=1764664709532", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(15).jpg?updatedAt=1764664709131", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(16).jpg?updatedAt=1764664709355", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(17).jpg?updatedAt=1764664709033", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(1)%20(18).jpg?updatedAt=1764664711075", "https://ik.imagekit.io/7jrp2esuz/goods_02_436158%20(2)%20(2)%20(1).jpg?updatedAt=1764664709012"
         ];
 
-        // Data Produk (menggunakan array imageUrls yang diperbarui)
         const productsData = [
-            { num: 1, name: "Pengasah pisau gunting", sub: "Beli di shopee", img: imageUrls[0], link: "https://s.shopee.co.id/1qUEyoiTWC" },
+            { num: 1, name: "Pengasah pisau gunting", sub: "Beli di shopee", img: imageUrls[0], link: "https://s.shopee.co.id/4qBhOY7UYf" },
             { num: 2, name: "Keset menyerap air", sub: "Beli di shopee", img: imageUrls[1], link: "https://s.shopee.co.id/6VG7kqPRxE" },
             { num: 3, name: "Pengering Sepatu Elektrik", sub: "Beli di shopee", img: imageUrls[2], link: "https://s.shopee.co.id/10vBA5OZZ6" },
             { num: 4, name: "Toples Tusuk Gigi Pintar", sub: "Beli di shopee", img: imageUrls[3], link: "https://s.shopee.co.id/1gAryAZcIi" },
             { num: 5, name: "Wadah sabun Dispenser", sub: "Beli di shopee", img: imageUrls[4], link: "https://s.shopee.co.id/8fKcJrN5Es" },
             { num: 6, name: "Kura-kura sekarat", sub: "Beli di shopee", img: imageUrls[5], link: "https://s.shopee.co.id/8Khlukjk6S" },
             { num: 7, name: "Chop bawang cabe dll", sub: "Beli di shopee", img: imageUrls[6], link: "https://s.shopee.co.id/gIKmZ2uTi" },
-            { num: 8, name: "Sikat Pembersih, Elektrik", sub: "Beli di shopee", img: imageUrls[7], link: "https://s.shopee.co.id/4foU2rUz2u" },
-            { num: 9, name: "Bintang Marah Tantrum", sub: "Beli di shopee", img: imageUrls[8], link: "https://s.shopee.co.id/3LMqbTOyed" },
-            { num: 10, name: "Blender juice portable", sub: "Beli di shopee", img: imageUrls[9], link: "https://s.shopee.co.id/8AOLhqzFqy" },
+            { num: 8, name: "Sikat Pembersih, Elektrik", sub: "Beli di shopee", img: imageUrls[7], link: "https://s.shopee.co.id/AKWdwqZBLg" },
+            { num: 9, name: "Bintang Marah Tantrum", sub: "Beli di shopee", img: imageUrls[8], link: "https://s.shopee.co.id/3qJAD4yMfA" },
+            { num: 10, name: "Blender juice portable", sub: "Beli di shopee", img: imageUrls[9], link: "https://s.shopee.co.id/9AKgZ2mjtx" },
             { num: 11, name: "Mainan palu anak-anak", sub: "Beli di shopee", img: imageUrls[10], link: "https://s.shopee.co.id/VyuZU9b5m" },
             { num: 12, name: "Rak Kaki Galon Air", sub: "Beli di shopee", img: imageUrls[11], link: "https://s.shopee.co.id/30gFXyp1tj" },
             { num: 13, name: "Mainan Kaktus Bergoyang", sub: "Beli di shopee", img: imageUrls[12], link: "https://s.shopee.co.id/7fS56O6mSC" },
-            { num: 14, name: "Mainan Kepiting Lari sensor", sub: "Beli di shopee", img: imageUrls[13], link: "https://s.shopee.co.id/9KaJc5Eeuf" },
+            { num: 14, name: "Mainan Kepiting Lari sensor", sub: "Beli di shopee", img: imageUrls[13], link: "https://s.shopee.co.id/8AS9NLzppT" },
             { num: 15, name: "Alat gosok kaki saat mandi", sub: "Beli di shopee", img: imageUrls[14], link: "https://s.shopee.co.id/10vBgsHE45" },
             { num: 16, name: "Spatula Scoop penjepit", sub: "Beli di shopee", img: imageUrls[15], link: "https://s.shopee.co.id/AA9QboF5vP" },
-            { num: 17, name: "Cetakan Es Batu", sub: "Beli di shopee", img: imageUrls[16], link: "https://s.shopee.co.id/6AdHLo1P9v" },
+            { num: 17, name: "Cetakan Es Batu", sub: "Beli di shopee", img: imageUrls[16], link: "https://s.shopee.co.id/8V4zm4rTaF" },
             { num: 18, name: "Cermin Belakang 4 SISI", sub: "Beli di shopee", img: imageUrls[17], link: "https://s.shopee.co.id/3VcWfecKES" },
             { num: 19, name: "Kunci Ring Pas Heksagonal", sub: "Beli di shopee", img: imageUrls[18], link: "https://s.shopee.co.id/5VNb3QWTuE" },
             { num: 20, name: "Botol susu tanpa di pegang", sub: "Beli di shopee", img: imageUrls[19], link: "https://s.shopee.co.id/4foUL32NVk" },
             { num: 21, name: "Dispenser Air Minum portable", sub: "Beli di shopee", img: imageUrls[20], link: "https://s.shopee.co.id/6AdHqjoTKx" },
             { num: 22, name: "Kursi Lesehan Lipat", sub: "Beli di shopee", img: imageUrls[21], link: "https://s.shopee.co.id/4AsDn49PMy" },
             { num: 23, name: "Mini Layar Selfie", sub: "Beli di shopee", img: imageUrls[22], link: "https://s.shopee.co.id/1gAsVKAJk5" },
-            { num: 24, name: "Pemotong buat dan sayur", sub: "Beli di shopee", img: imageUrls[23], link: "https://s.shopee.co.id/5q0RTJlpp3" },
-            { num: 25, name: "Tang Multifungsi 5 in 1", sub: "Beli di shopee", img: imageUrls[24], link: "https://s.shopee.co.id/2qMpNxbt7y" },
-            { num: 26, name: "Sikat otomatis Multi fungsi", sub: "Beli di shopee", img: imageUrls[25], link: "https://s.shopee.co.id/8fKcKVXnxB" },
+            { num: 24, name: "Pemotong buat dan sayur", sub: "Beli di shopee", img: imageUrls[23], link: "https://s.shopee.co.id/60NenlXaPR" },
+            { num: 25, name: "Tang Multifungsi 5 in 1", sub: "Beli di shopee", img: imageUrls[24], link: "https://s.shopee.co.id/8fOPytDedl" },
+            { num: 26, name: "Sikat otomatis Multi fungsi", sub: "Beli di shopee", img: imageUrls[25], link: "https://s.shopee.co.id/6pwlnnJxCN" },
             { num: 27, name: "Mainan Anak Bebek DJ", sub: "Beli di shopee", img: imageUrls[26], link: "https://s.shopee.co.id/12dzlq4Z6" },
             { num: 28, name: "Lampu Tidur Bulan Madu", sub: "Beli di shopee", img: imageUrls[27], link: "https://s.shopee.co.id/2B796fXJbz" },
             { num: 29, name: "Lampu Dinding Elang Botak", sub: "Beli di shopee", img: imageUrls[28], link: "https://s.shopee.co.id/9fDA2W6vdc" },
@@ -676,13 +305,13 @@
             { num: 37, name: "Alat pencambut rumput", sub: "Beli di shopee", img: imageUrls[36], link: "https://s.shopee.co.id/10vBuoO2gn" },
             { num: 38, name: "LED fleksibel pakai aplikasi", sub: "Beli di shopee", img: imageUrls[37], link: "https://s.shopee.co.id/2LQZVJiI4G" },
             { num: 39, name: "Mesin cuci portable", sub: "Beli di shopee", img: imageUrls[38], link: "https://s.shopee.co.id/LfV7fK5n0" },
-            { num: 40, name: "Headrest Penyangga Kepala", sub: "Beli di shopee", img: imageUrls[39], link: "https://s.shopee.co.id/2g3Pu0jCAM" },
+            { num: 40, name: "Headrest Penyangga Kepala", sub: "Beli di shopee", img: imageUrls[39], link: "https://s.shopee.co.id/30k3Ew7Uk9" },
             { num: 41, name: "Alat Peras Buah", sub: "Beli di shopee", img: imageUrls[40], link: "https://s.shopee.co.id/9pWaRGtlUU" },
             { num: 42, name: "Mainan pancing 3 IN 1", sub: "Beli di shopee", img: imageUrls[41], link: "https://s.shopee.co.id/8zxSipiLOD" },
             { num: 43, name: "Gunting Kuku elektrik", sub: "Beli di shopee", img: imageUrls[42], link: "https://s.shopee.co.id/4VV3KBxKPA" },
             { num: 44, name: "Gelas aduk otomatis", sub: "Beli di shopee", img: imageUrls[43], link: "https://s.shopee.co.id/70CP4yQGs6" },
             { num: 45, name: "Kaset serap air anti selip", sub: "Beli di shopee", img: imageUrls[44], link: "https://s.shopee.co.id/7KpEkV55gW" },
-            { num: 46, name: "Pengiris sayur 5 in 1", sub: "Beli di shopee", img: imageUrls[45], link: "https://s.shopee.co.id/3fvx6tk8Ud" },
+            { num: 46, name: "Pengiris sayur 5 in 1", sub: "Beli di shopee", img: imageUrls[45], link: "https://s.shopee.co.id/4fsHEA8jEI" },
             { num: 47, name: "Botol Minyak Goreng spray", sub: "Beli di shopee", img: imageUrls[46], link: "https://s.shopee.co.id/3LJ6iNEODr" },
             { num: 48, name: "4Pcs alat sprei anti kusut", sub: "Beli di shopee", img: imageUrls[47], link: "https://s.shopee.co.id/2qMq7X9jh0" },
             { num: 49, name: "Bantal Sabuk Kursi tipe 1", sub: "Beli di shopee", img: imageUrls[48], link: "https://s.shopee.co.id/5Akktv2YQc" },
@@ -692,44 +321,24 @@
         ];
 
         // Elemen DOM
-        const landingPage = document.getElementById('landing-page');
-        const shopeeLinkPage = document.getElementById('shopee-link-page');
-        const btnToProductList = document.getElementById('btn-to-product-list');
-        const btnBackToLanding = document.getElementById('btn-back-to-landing');
         const productList = document.getElementById('product-list');
         const searchInput = document.getElementById('search-input');
         const headerList = document.getElementById('header-list');
         const searchStickyBar = document.getElementById('search-sticky-bar');
 
-
-        /* === FUNGSI UTAMA === */
-
-        // 1. Fungsi untuk merender daftar produk
+        // Render Produk
         function renderProducts(data) {
             productList.innerHTML = data.map(product => `
-                <li class="product-item" data-product-name="${product.name.toLowerCase()}" data-product-num="${product.num}">
-                    <a
-                        href="${product.link}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="product-link"
-                    >
-                        <div class="product-icon-text-wrapper">
-
-                            <div class="product-image-wrapper">
-                                <span class="product-number-overlay">${product.num}</span>
-                                <img
-                                    src="${product.img}"
-                                    alt="${product.name}"
-                                    class="product-image"
-                                    loading="lazy"
-                                >
-                            </div>
-                            <div class="product-info-wrapper">
-                                <div class="product-text">
-                                    <h3>${product.name}</h3>
-                                    <p>${product.sub}</p>
-                                </div>
+                <li class="product-item" data-name="${product.name.toLowerCase()}" data-num="${product.num}">
+                    <a href="${product.link}" target="_blank" rel="noopener" class="product-link">
+                        <div class="product-image-wrapper">
+                            <span class="product-number-overlay">${product.num}</span>
+                            <img src="${product.img}" alt="${product.name}" class="product-image" loading="lazy">
+                        </div>
+                        <div class="product-info-wrapper">
+                            <div class="product-text">
+                                <h3>${product.name}</h3>
+                                <p>${product.sub}</p>
                             </div>
                         </div>
                         <span class="next-icon"></span>
@@ -738,101 +347,35 @@
             `).join('');
         }
 
-        // 2. Fungsi Filter Search Bar
+        // Filter Produk
         function filterProducts() {
             const query = searchInput.value.toLowerCase().trim();
             const items = productList.children;
 
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const name = item.getAttribute('data-product-name');
-                const num = item.getAttribute('data-product-num');
-
-                let isMatch = false;
-
-                // --- LOGIKA PENCARIAN KETAT UNTUK NOMOR ---
-                if (query === '') {
-                    // Jika query kosong, tampilkan semua
-                    isMatch = true;
-                } else if (!isNaN(query) && query !== '') {
-                    // Jika query adalah angka, cek KESAMAAN KETAT
-                    isMatch = (num === query);
-                } else {
-                    // Jika query adalah teks (bukan angka), gunakan pencarian 'includes'
-                    isMatch = name.includes(query);
-                }
-                // --- AKHIR LOGIKA PENCARIAN ---
-
-                if (isMatch) {
-                    item.classList.remove('hidden');
-                } else {
-                    item.classList.add('hidden');
-                }
+            for (let item of items) {
+                const name = item.getAttribute('data-name');
+                const num = item.getAttribute('data-num');
+                const isMatch = query === '' || ( !isNaN(query) ? num === query : name.includes(query) );
+                item.classList.toggle('hidden', !isMatch);
             }
         }
 
-        // 3. Fungsi Animasi Header saat Scroll (Menyusut & Posisi Search Bar)
-        let isScrolling = false;
-        function handleScroll() {
-            if (!isScrolling) {
-                window.requestAnimationFrame(() => {
-                    if (shopeeLinkPage.style.display !== 'none') {
-
-                        // A. Animasi Header Menyusut
-                        if (window.scrollY > 5) {
-                            headerList.classList.add('scrolled');
-                        } else {
-                            headerList.classList.remove('scrolled');
-                        }
-
-                        // B. Tentukan Posisi Sticky Search Bar secara dinamis
-                        const headerHeight = headerList.getBoundingClientRect().height;
-                        searchStickyBar.style.top = `${headerHeight}px`;
-                    }
-                    isScrolling = false;
-                });
-                isScrolling = true;
-            }
-        }
-
-        // 4. Transisi Halaman: Landing Page -> Product List
-        function goToProductList() {
-            landingPage.style.display = 'none';
-            shopeeLinkPage.style.display = 'block';
-            window.scrollTo(0, 0);
-            searchInput.value = '';
-            filterProducts();
-            // Setelah pindah, setel ulang posisi sticky
+        // Sticky Logic
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY > 10;
+            headerList.classList.toggle('scrolled', scrolled);
             searchStickyBar.style.top = `${headerList.offsetHeight}px`;
-        }
-
-        // 5. Transisi Halaman: Product List -> Landing Page
-        function goToLandingPage() {
-            shopeeLinkPage.style.display = 'none';
-            landingPage.style.display = 'block';
-            window.scrollTo(0, 0);
-        }
-
-        /* === EVENT LISTENERS === */
-
-        btnToProductList.addEventListener('click', goToProductList);
-        btnBackToLanding.addEventListener('click', goToLandingPage);
-        searchInput.addEventListener('input', filterProducts);
-        window.addEventListener('scroll', handleScroll);
-
-        // Inisialisasi: Render semua produk saat DOM siap
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts(productsData);
-            // Atur posisi awal Search Bar saat halaman dimuat
-            const initialHeaderHeight = headerList.offsetHeight;
-            searchStickyBar.style.top = `${initialHeaderHeight}px`;
         });
 
-        // Atur ulang posisi sticky Search Bar jika ukuran layar berubah (misal, rotasi perangkat)
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(productsData);
+            searchStickyBar.style.top = `${headerList.offsetHeight}px`;
+        });
+
+        searchInput.addEventListener('input', filterProducts);
         window.addEventListener('resize', () => {
-            if (shopeeLinkPage.style.display !== 'none') {
-                 searchStickyBar.style.top = `${headerList.offsetHeight}px`;
-            }
+            searchStickyBar.style.top = `${headerList.offsetHeight}px`;
         });
     </script>
 </body>
